@@ -23,7 +23,8 @@ export class HelloComponent {
     console.log(dragDrop);
     console.log(this.div);
     let a=dragDrop.createDrag(this.div);
-    console.log(dropREf)
     a._withDropContainer(dropREf);
+    console.log(dropREf);
+    console.log(a);
   }
 }
