@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild, TemplateRef, ViewContainerRef ,ViewEncapsulation,ComponentFactoryResolver} from '@angular/core';
 import {MatAccordion} from '@angular/material';
 import {HelloComponent} from './hello.component';
-import { DragDrop } from '@angular/cdk/drag-drop';
+import { DragDrop,DragRef } from '@angular/cdk/drag-drop';
 let counter = 1;
 @Component({
   selector: 'my-app',
@@ -17,7 +17,7 @@ export class AppComponent  {
   @ViewChild('dvParent') dvParent: HTMLElement;
   constructor(private resolver: ComponentFactoryResolver,
   private dragDrop:DragDrop) {}
-
+  localDragRef :DragRef[]= new Array<DragRef>();
   add() {
     let componentFactory = this.resolver.resolveComponentFactory(HelloComponent);
     let componentRef = componentFactory.create(this.pieChartContainer.injector);
@@ -27,7 +27,8 @@ export class AppComponent  {
     console.log(this.dvParent);
     let droplistREf=this.dragDrop.createDropList(this.dvParent);
     componentRef.changeDetectorRef.detectChanges();
-    componentRef.instance.dragEnable(this.dragDrop,droplistREf);
+    this.localDragRef.push(componentRef.instance.dragEnable(this.dragDrop));
+    droplistREf.withItems(this.localDragRef);
 
 
     //componentRef.instance.panel.accordion = this.accordion;

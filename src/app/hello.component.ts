@@ -19,18 +19,12 @@ export class HelloComponent {
   @ViewChild('dvDragElement') div :HTMLElement;
   @ViewChild(MatExpansionPanel) panel: MatExpansionPanel;
   title: string;
-  localDragRef :DragRef[]= new Array<DragRef>();
-  dragEnable(dragDrop,dropREf){
+  dragEnable(dragDrop){
     
     console.log(dragDrop);
     console.log(this.div);
-    let a=dragDrop.createDrag(this.div);
+   return dragDrop.createDrag(this.div);
     //a._withDropContainer(dropREf);
-    console.log(a);
-    this.localDragRef.push(a);
-    console.log(dropREf);
-    dropREf.withItems(this.localDragRef);
-    console.log(dropREf);
-    console.log(a);
+    
   }
 }
