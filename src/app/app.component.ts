@@ -24,9 +24,10 @@ export class AppComponent  {
     componentRef.instance.title = 'Dynamic accordion header' + counter++;
     this.pieChartContainer.createEmbeddedView(componentRef.instance.template);
     //this.dragDrop.createDropList();
+    componentRef.changeDetectorRef.detectChanges();
     componentRef.instance.dragEnable(this.dragDrop);
 
-    componentRef.changeDetectorRef.detectChanges();
+
     //componentRef.instance.panel.accordion = this.accordion;
     
   }

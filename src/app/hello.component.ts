@@ -6,20 +6,17 @@ import {MatExpansionPanel} from '@angular/material';
   selector: 'hello',
   template: `
     <ng-template #tmpl>
-      <mat-expansion-panel>
           <div #dvDragElement>
-        <mat-expansion-panel-header>{{title}}</mat-expansion-panel-header>
         <p>Some text</p>
         </div>
-      </mat-expansion-panel>
     </ng-template>
   `,
   styles: [],
   encapsulation: ViewEncapsulation.None,
 })
 export class HelloComponent {
-   @ViewChild('tmpl') template: TemplateRef<any>;
-   @ViewChild('dvDragElement') div:ElementRef;
+  @ViewChild('tmpl') template: TemplateRef<any>;
+  @ViewChild('dvDragElement') div :HTMLElement;
   @ViewChild(MatExpansionPanel) panel: MatExpansionPanel;
   title: string;
   dragEnable(dragDrop){
