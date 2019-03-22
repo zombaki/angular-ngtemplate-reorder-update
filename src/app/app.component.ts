@@ -29,7 +29,7 @@ export class AppComponent  {
     componentRef.changeDetectorRef.detectChanges();
     this.localDragRef.push(componentRef.instance.dragEnable(this.dragDrop));
     droplistREf.withItems(this.localDragRef);
-
+    componentRef.instance.panel.accordion = this.accordion;
 
     //componentRef.instance.panel.accordion = this.accordion;
     

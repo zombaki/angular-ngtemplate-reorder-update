@@ -7,7 +7,10 @@ import {MatExpansionPanel} from '@angular/material';
   template: `
     <ng-template #tmpl>
           <div #dvDragElement>
-        <p>{{title}}</p>
+          <mat-expansion-panel>
+        <mat-expansion-panel-header>{{title}}</mat-expansion-panel-header>
+        <p>someText</p>
+        </mat-expansion-panel>
         </div>
     </ng-template>
   `,
