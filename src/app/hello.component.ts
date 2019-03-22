@@ -19,7 +19,7 @@ export class HelloComponent {
   @ViewChild('dvDragElement') div :HTMLElement;
   @ViewChild(MatExpansionPanel) panel: MatExpansionPanel;
   title: string;
-  dragEnable(dragDrop){
+  dragEnable(dragDrop,dragEnable){
     console.log(dragDrop);
     console.log(this.div);
     dragDrop.createDrag(this.div);

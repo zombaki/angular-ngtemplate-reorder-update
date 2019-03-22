@@ -14,7 +14,7 @@ export class AppComponent  {
 
   @ViewChild("piechartsContainer", {read: ViewContainerRef}) pieChartContainer: ViewContainerRef;
   @ViewChild(MatAccordion) accordion: MatAccordion;
-
+  @ViewChild(MatAccordion) dvParent: HTMLElement;
   constructor(private resolver: ComponentFactoryResolver,
   private dragDrop:DragDrop) {}
 
@@ -23,9 +23,9 @@ export class AppComponent  {
     let componentRef = componentFactory.create(this.pieChartContainer.injector);
     componentRef.instance.title = 'Dynamic accordion header' + counter++;
     this.pieChartContainer.createEmbeddedView(componentRef.instance.template);
-    //this.dragDrop.createDropList();
+    let droplistREf=this.dragDrop.createDropList(this.dvParent);
     componentRef.changeDetectorRef.detectChanges();
-    componentRef.instance.dragEnable(this.dragDrop);
+    componentRef.instance.dragEnable(this.dragDrop,droplistREf);
 
 
     //componentRef.instance.panel.accordion = this.accordion;
