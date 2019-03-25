@@ -24,8 +24,8 @@ export class HelloComponent {
   title: string;
   dragEnable(dragDrop){
     
-    console.log(dragDrop);
-    console.log(this.div);
+    ///console.log(dragDrop);
+    //console.log(this.div);
    return dragDrop.createDrag(this.div);
     //a._withDropContainer(dropREf);
     
