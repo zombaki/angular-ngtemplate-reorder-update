@@ -27,14 +27,13 @@ export class AppComponent implements OnInit  {
      this.droplistREf.dropped.subscribe(a=>{
   
       console.log('previous');
-      let test =  new Array<DragRef>();
       console.log(this.localDragRef[0].getRootElement());
       moveItemInArray(this.localDragRef,a.previousIndex,a.currentIndex);
       console.log(this.localDragRef[0].getRootElement());
-      test.push(this.localDragRef[0]);
-     this.droplistREf.withItems(test);
+     this.droplistREf.withItems(this.localDragRef);
       console.log(this.droplistREf.element);
-     //droplistREf.withItems(this.localDragRef);     
+     this.droplistREf.withItems(this.localDragRef);
+     
     this.chRef.detectChanges();
       })
   }
