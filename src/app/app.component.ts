@@ -25,16 +25,7 @@ export class AppComponent implements OnInit  {
     this.droplistREf=this.dragDrop.createDropList(this.dvParent);
 
      this.droplistREf.dropped.subscribe(a=>{
-  
-      console.log('previous');
-      console.log(this.localDragRef[0].getRootElement());
       moveItemInArray(this.localDragRef,a.previousIndex,a.currentIndex);
-      console.log(this.localDragRef[0].getRootElement());
-     this.droplistREf.withItems(this.localDragRef);
-      console.log(this.droplistREf.element);
-     this.droplistREf.withItems(this.localDragRef);
-     
-    this.chRef.detectChanges();
       })
   }
 
@@ -44,16 +35,10 @@ export class AppComponent implements OnInit  {
     let componentRef = componentFactory.create(this.pieChartContainer.injector);
     componentRef.instance.title = 'Dynamic accordion header' + counter++;
     this.pieChartContainer.createEmbeddedView(componentRef.instance.template);
-    //console.log('this is start');
-    //console.log(this.dvParent);    
     componentRef.changeDetectorRef.detectChanges();
     this.localDragRef.push(componentRef.instance.dragEnable(this.dragDrop));
     this.droplistREf.withItems(this.localDragRef);
-   
     componentRef.instance.panel.accordion = this.accordion;
-
-    //componentRef.instance.panel.accordion = this.accordion;
-    
   }
   dropLocal(a){
     console.log('inside dropLcaol.');
