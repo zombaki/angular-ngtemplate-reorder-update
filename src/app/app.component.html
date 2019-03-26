@@ -1,5 +1,5 @@
 <button md-raised-button (click)="add()">Add panel</button>
-    <div #dvParent >
+    <div #dvParent (cdkDropListDropped)="dropLocal($event)">
       <mat-accordion>
       <ng-container #piechartsContainer></ng-container>
       </mat-accordion>

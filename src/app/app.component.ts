@@ -55,4 +55,7 @@ export class AppComponent implements OnInit  {
     //componentRef.instance.panel.accordion = this.accordion;
     
   }
+  dropLocal(a){
+    console.log('inside dropLcaol.');
+  }
 }
