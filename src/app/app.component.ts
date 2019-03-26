@@ -12,7 +12,7 @@ export class AppComponent implements OnInit  {
    displayMode: string = 'default';
   multi = false;
 
-  @ViewChild("piechartsContainer", {read: ViewContainerRef}) pieChartContainer: ViewContainerRef;
+@ViewChild('components', { read: ViewContainerRef }) viewContainerRef;
   @ViewChild(MatAccordion) accordion: MatAccordion;
   @ViewChild('dvParent') dvParent: HTMLElement;
   constructor(private resolver: ComponentFactoryResolver,
@@ -25,7 +25,6 @@ export class AppComponent implements OnInit  {
     this.droplistREf=this.dragDrop.createDropList(this.dvParent);
 
      this.droplistREf.dropped.subscribe(a=>{
-  
       console.log('previous');
       console.log(this.localDragRef[0].getRootElement());
       moveItemInArray(this.localDragRef,a.previousIndex,a.currentIndex);
@@ -33,7 +32,6 @@ export class AppComponent implements OnInit  {
      this.droplistREf.withItems(this.localDragRef);
       console.log(this.droplistREf.element);
      this.droplistREf.withItems(this.localDragRef);
-     
     this.chRef.detectChanges();
       })
   }
@@ -41,19 +39,11 @@ export class AppComponent implements OnInit  {
 
   add() {
     let componentFactory = this.resolver.resolveComponentFactory(HelloComponent);
-    let componentRef = componentFactory.create(this.pieChartContainer.injector);
-    componentRef.instance.title = 'Dynamic accordion header' + counter++;
-    this.pieChartContainer.createEmbeddedView(componentRef.instance.template);
-    //console.log('this is start');
-    //console.log(this.dvParent);    
-    componentRef.changeDetectorRef.detectChanges();
-    this.localDragRef.push(componentRef.instance.dragEnable(this.dragDrop));
+    let component = this.viewContainerRef.createComponent(componentFactory);
+    component.instance.title = 'Dynamic accordion header' + counter++;
+    component.changeDetectorRef.detectChanges();
+    this.localDragRef.push(component.instance.dragEnable(this.dragDrop));
     this.droplistREf.withItems(this.localDragRef);
-   
-    componentRef.instance.panel.accordion = this.accordion;
-
-    //componentRef.instance.panel.accordion = this.accordion;
-    
   }
   dropLocal(a){
     console.log('inside dropLcaol.');

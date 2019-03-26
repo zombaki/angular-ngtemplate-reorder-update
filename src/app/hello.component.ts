@@ -5,14 +5,12 @@ import {MatExpansionPanel} from '@angular/material';
 @Component({
   selector: 'hello',
   template: `
-    <ng-template #tmpl>
           <div #dvDragElement>
           <mat-expansion-panel>
         <mat-expansion-panel-header>{{title}}</mat-expansion-panel-header>
         <p>someText</p>
         </mat-expansion-panel>
         </div>
-    </ng-template>
   `,
   styles: [],
   encapsulation: ViewEncapsulation.None,
