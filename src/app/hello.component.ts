@@ -23,11 +23,7 @@ export class HelloComponent {
   @ViewChild(MatExpansionPanel) panel: MatExpansionPanel;
   title: string;
   dragEnable(dragDrop){
-    
-    ///console.log(dragDrop);
-    //console.log(this.div);
    return dragDrop.createDrag(this.div);
-    //a._withDropContainer(dropREf);
     
   }
 }
