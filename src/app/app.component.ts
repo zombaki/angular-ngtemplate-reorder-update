@@ -20,18 +20,29 @@ export class AppComponent implements OnInit  {
   private chRef: ChangeDetectorRef) {}
   localDragRef :DragRef[]= new Array<DragRef>();
   droplistREf: DropListRef<any>;
-
+components = [];
   ngOnInit(){
     this.droplistREf=this.dragDrop.createDropList(this.dvParent);
 
      this.droplistREf.dropped.subscribe(a=>{
-      console.log('previous');
-      console.log(this.localDragRef[0].getRootElement());
-      moveItemInArray(this.localDragRef,a.previousIndex,a.currentIndex);
-      console.log(this.localDragRef[0].getRootElement());
-     this.droplistREf.withItems(this.localDragRef);
-      console.log(this.droplistREf.element);
-     this.droplistREf.withItems(this.localDragRef);
+      console.log(a.previousIndex);      
+      console.log(a.currentIndex);    
+      //const viewRef = this.viewContainerRef.get(a.previousIndex);
+      //this.viewContainerRef.insert(viewRef,a.currentIndex);
+      //this.viewContainerRef.remove(a.previousIndex);
+      //moveItemInArray(this.localDragRef,a.previousIndex,a.currentIndex);
+      //console.log(this.localDragRef);
+      
+      
+      //this.viewContainerRef.createComponent(this.components[1],1)
+      //this.components.splice(a.previousIndex, 1);
+      //this.localDragRef.pop();
+      
+  
+      //console.log(this.localDragRef[0].getRootElement());
+    //  this.droplistREf.withItems(this.localDragRef);
+    //   console.log(this.droplistREf.element);
+    //  this.droplistREf.withItems(this.localDragRef);
     this.chRef.detectChanges();
       })
   }
@@ -40,10 +51,12 @@ export class AppComponent implements OnInit  {
   add() {
     let componentFactory = this.resolver.resolveComponentFactory(HelloComponent);
     let component = this.viewContainerRef.createComponent(componentFactory);
+    
     component.instance.title = 'Dynamic accordion header' + counter++;
     component.changeDetectorRef.detectChanges();
     this.localDragRef.push(component.instance.dragEnable(this.dragDrop));
     this.droplistREf.withItems(this.localDragRef);
+    this.components.push(componentFactory);
   }
   dropLocal(a){
     console.log('inside dropLcaol.');
