@@ -8,6 +8,7 @@ let counter = 1;
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
+//PROBLEM : STILL NOT ABLE TO REORDER THE CHANGED INDEX BUT THIS IS A GOOD EXAMPLE TO CHECK HOW TO IMPLEMENT CDK DRAG DROP USING SERVICE
 export class AppComponent implements OnInit  {
    displayMode: string = 'default';
   multi = false;
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit  {
 
   ngOnInit(){
     this.droplistREf=this.dragDrop.createDropList(this.dvParent);
-
+    //TO INVOKE DROP FUNCTIONALITY OF DRAGABLE COMPOENET INSIDE LIST
      this.droplistREf.dropped.subscribe(a=>{
       moveItemInArray(this.localDragRef,a.previousIndex,a.currentIndex);
       })
@@ -31,11 +32,14 @@ export class AppComponent implements OnInit  {
 
 
   add() {
+    //DYNAMIC COMPONENT CREATION
     let componentFactory = this.resolver.resolveComponentFactory(HelloComponent);
     let componentRef = componentFactory.create(this.pieChartContainer.injector);
     componentRef.instance.title = 'Dynamic accordion header' + counter++;
     this.pieChartContainer.createEmbeddedView(componentRef.instance.template);
+
     componentRef.changeDetectorRef.detectChanges();
+    //MAINTAIN DRAGREFERENCE LIST
     this.localDragRef.push(componentRef.instance.dragEnable(this.dragDrop));
     this.droplistREf.withItems(this.localDragRef);
     componentRef.instance.panel.accordion = this.accordion;

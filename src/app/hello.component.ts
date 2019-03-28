@@ -22,6 +22,7 @@ export class HelloComponent {
   @ViewChild('dvDragElement') div :HTMLElement;
   @ViewChild(MatExpansionPanel) panel: MatExpansionPanel;
   title: string;
+  //DRAG ENABLE : THIS FUNCTION IS INVOKED TO RETURN DRAG REFERENCE LATER IN PARENT WE ASSOCIATE IT WITH DRAG REFRENCE LIST
   dragEnable(dragDrop){
    return dragDrop.createDrag(this.div);
     
