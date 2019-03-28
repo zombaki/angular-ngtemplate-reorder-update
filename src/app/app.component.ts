@@ -13,7 +13,7 @@ export class AppComponent implements OnInit  {
    displayMode: string = 'default';
   multi = false;
 
-  @ViewChild("piechartsContainer", {read: ViewContainerRef}) pieChartContainer: ViewContainerRef;
+  @ViewChild("component", {read: ViewContainerRef}) component: ViewContainerRef;
   @ViewChild(MatAccordion) accordion: MatAccordion;
   @ViewChild('dvParent') dvParent: HTMLElement;
   constructor(private resolver: ComponentFactoryResolver,
@@ -34,9 +34,9 @@ export class AppComponent implements OnInit  {
   add() {
     //DYNAMIC COMPONENT CREATION
     let componentFactory = this.resolver.resolveComponentFactory(HelloComponent);
-    let componentRef = componentFactory.create(this.pieChartContainer.injector);
+    let componentRef = componentFactory.create(this.component.injector);
     componentRef.instance.title = 'Dynamic accordion header' + counter++;
-    this.pieChartContainer.createEmbeddedView(componentRef.instance.template);
+    this.component.createEmbeddedView(componentRef.instance.template);
 
     componentRef.changeDetectorRef.detectChanges();
     //MAINTAIN DRAGREFERENCE LIST
